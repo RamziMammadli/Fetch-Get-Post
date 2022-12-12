@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        function GetOrders() {
+            let url = `https://northwind.vercel.app/api/orders`;
+
+            fetch(url)
+                .then((res) => res.json())
+                .then((data) => {
+                    data.filter((item) => {
+                        console.log(item);
+                });
+            });
+        }
+
+        function GetSuppliers() {
+            let url = `https://northwind.vercel.app/api/suppliers`
+
+            fetch(url)
+                .then((res) => res.json())
+                .then((data) => {
+                    data.filter((item) => {
+                        console.log(item);
+                });
+            });
+        }
+
+        function PostOrder(costumerId, employerId){
+            let url = `https://northwind.vercel.app/api/orders`
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+           
+                    },
+                body: JSON.stringify({costumerId: costumerId, employerId: employerId}),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+        }
+
+        function PostSupplier(companyName, contactName){
+            let url = `https://northwind.vercel.app/api/suppliers`
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+           
+                    },
+                body: JSON.stringify({companyName: companyName, contactName: contactName}),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+        }
+    </script>
+  </body>
+</html>
